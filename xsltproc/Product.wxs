@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="xsltproc" Language="1033" Version="1.0.0.0" Manufacturer="PreTeXt" UpgradeCode="A89A25D9-4CEC-4434-BA78-13553CA53E61">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+
+    <!--<Media Id="1"-->
+    <!--Cabinet="media1.cab"-->
+    <!--EmbedCab="yes" />-->
+    <Feature Id="ProductFeature" Title="DirectoryInstaller" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="XsltprocComponents" />
+    </Feature>
+
+    <!--<Fragment>-->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="LocalAppDataFolder">
+        <Directory Id="PreTeXtFolder" Name="PreTeXt">
+          <Directory Id="ConfigFolder" Name="Config"/>
+          <Directory Id="ToolsFolder" Name="Tools"/>
+          <Directory Id="DocFolder" Name="Doc"/>
+        </Directory>
+      </Directory>
+    </Directory>
+    <!--</Fragment>-->
+
+    <!--<Fragment>-->
+    <ComponentGroup Id="ProductComponents">
+      <Component Id="CMP_CreateConfigFolder"
+                 Guid="{F8681C32-06FF-4E46-A4E6-7EC6B3D75BA0}"
+                 Directory="ConfigFolder">
+        <CreateFolder/>
+      </Component>
+      <Component Id="CMP_CreateToolsFolder"
+                 Guid="{8A672A5E-A340-4C89-A47F-8771F5E222ED}"
+                 Directory="ToolsFolder">
+        <CreateFolder/>
+      </Component>
+      <Component Id="CMP_CreateDocFolder"
+                 Guid="{99208B13-FBA2-4D51-8D7F-E6EE387030DB}"
+                 Directory="DocFolder">
+        <CreateFolder/>
+      </Component>
+    </ComponentGroup>
+    <ComponentGroup Id="XsltprocComponents">
+      <Component Id="CMP_iconvDLL"
+                 Guid="{A8DEA249-F4AA-48D3-86A6-46989855ED8B}"
+                 Directory="ToolsFolder">
+        <File Id="FILE_iconvDLL"
+              Source="iconv.dll"
+              KeyPath="yes"/>
+      </Component>
+      <Component Id="CMP_libxml2DLL"
+                 Guid="{6B3C905E-A8BF-48BF-89B8-2715B963054B}"
+                 Directory="ToolsFolder">
+        <File Id="FILE_libxml2DLL"
+              Source="libxml2.dll"
+              KeyPath="yes"/>
+      </Component>
+      <Component Id="CMP_xmllintEXE"
+                 Guid="{A4E6D4B9-A8BD-43EF-89FF-CFCF908CF58C}"
+                 Directory="ToolsFolder">
+        <File Id="FILE_xmllintEXE"
+              Source="xmllint.exe"
+              KeyPath="yes"/>
+      </Component>
+      <Component Id="CMP_libexsltDLL"
+                 Guid="{903C8E2A-C881-4143-BC70-15096C48BA1E}"
+                 Directory="ToolsFolder">
+        <File Id="FILE_libexsltDLL"
+              Source="libexslt.dll"
+              KeyPath="yes"/>
+      </Component>
+      <Component Id="CMP_libxsltDLL"
+                 Guid="{95B7445F-D2CD-48A3-825E-AC22E7F8A28B}"
+                 Directory="ToolsFolder">
+        <File Id="FILE_libxsltDLL"
+              Source="libxslt.dll"
+              KeyPath="yes"/>
+      </Component>
+      <Component Id="CMP_xsltprocEXE"
+                 Guid="{9C28F1B0-6C09-4A27-8B3F-53DAE365CF3E}"
+                 Directory="ToolsFolder">
+        <File Id="FILE_xsltprocEXE"
+              Source="xsltproc.exe"
+              KeyPath="yes"/>
+      </Component>
+      <Component Id="CMP_zlib1DLL"
+                 Guid="{A07BD015-D29A-4E09-A72B-18A7EA05AF70}"
+                 Directory="ToolsFolder">
+        <File Id="FILE_zlib1DLL"
+              Source="zlib1.dll"
+              KeyPath="yes"/>
+      </Component>
+    </ComponentGroup>
+  </Product>
+</Wix>
+
